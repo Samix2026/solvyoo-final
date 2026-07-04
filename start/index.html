@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solvyoo Advisory — التشخيص</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700;800&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2A43; --navy-dark:#071E30; --emerald:#1F5E4A; --emerald-2:#2A7A61;
+  --gold:#C6A76B; --paper:#F8FAFC; --muted:#9DB0C0; --border:rgba(255,255,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Kufi Arabic',sans-serif;background:var(--navy);color:var(--paper);line-height:1.8;min-height:100vh;display:flex;flex-direction:column}
+
+/* nav */
+nav{position:fixed;top:0;inset-inline:0;z-index:30;height:64px;padding:0 42px;display:flex;align-items:center;justify-content:space-between;background:rgba(15,42,67,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-logo{display:inline-flex;align-items:center;gap:10px;direction:ltr;text-decoration:none}
+.nav-logo .brand-text{display:flex;flex-direction:column;line-height:1.05;letter-spacing:.14em}
+.nav-logo .brand-text span{font-family:Inter,system-ui,sans-serif;font-size:16px;font-weight:700;color:#F8FAFC}
+.nav-logo .brand-text small{font-family:Inter,system-ui,sans-serif;font-size:9px;font-weight:700;letter-spacing:.3em;color:var(--gold)}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,.15);padding:7px 14px;border-radius:6px;font-size:13px;font-weight:600;color:#F8FAFC;cursor:pointer;font-family:Inter,sans-serif;transition:border-color .2s}
+.lang-btn:hover{border-color:rgba(255,255,255,.4)}
+
+/* progress */
+.wiz-progress{position:fixed;top:64px;inset-inline:0;height:3px;background:rgba(255,255,255,.1);z-index:25}
+.wiz-progress-fill{height:100%;width:0;background:var(--gold);transition:width .4s cubic-bezier(.22,1,.36,1)}
+
+/* wizard */
+.wiz-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:120px 24px 70px}
+.wiz-inner{width:100%;max-width:720px}
+.wiz-step{display:none}
+.wiz-step.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.wiz-eyebrow{font-family:Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px}
+.wiz-eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.6}
+.wiz-h1{font-size:clamp(30px,4.6vw,46px);line-height:1.18;letter-spacing:-.02em;font-weight:700;margin:22px 0 0;color:#fff}
+.wiz-h2{font-size:clamp(23px,3vw,32px);line-height:1.3;letter-spacing:-.02em;font-weight:700;margin:14px 0 0;color:#fff}
+.wiz-body{margin:22px 0 0;font-size:17px;line-height:1.7;color:rgba(248,250,252,.68);max-width:54ch}
+.wiz-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.wiz-badge{font-size:13px;color:rgba(248,250,252,.8);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.wiz-actions{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.wiz-primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:14px 28px;border:none;border-radius:8px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;background:var(--emerald);color:#fff;box-shadow:0 14px 34px rgba(31,94,74,.34);transition:background .2s}
+.wiz-primary:hover{background:var(--emerald-2)}
+.wiz-primary:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
+.wiz-ghost{background:none;border:none;color:rgba(255,255,255,.7);font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;padding:12px 6px;transition:color .2s}
+.wiz-ghost:hover{color:#fff}
+.wiz-kicker{font-family:Inter,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.wiz-kicker b{color:var(--gold);font-weight:700}
+.wiz-options{margin-top:28px;display:flex;flex-direction:column;gap:12px}
+.opt-row{display:flex;align-items:center;gap:16px;width:100%;text-align:start;padding:17px 20px;cursor:pointer;font-family:inherit;font-size:16px;font-weight:500;color:#fff;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:10px;transition:background .15s,border-color .15s}
+.opt-row:hover{background:rgba(255,255,255,.06)}
+.opt-row.selected{background:rgba(31,94,74,.18);border-color:var(--emerald-2)}
+.opt-check{flex-shrink:0;width:20px;height:20px;border-radius:5px;border:1px solid rgba(255,255,255,.25);display:inline-flex;align-items:center;justify-content:center}
+.opt-row.selected .opt-check{background:var(--emerald);border-color:var(--emerald)}
+.opt-check svg{display:none}
+.opt-row.selected .opt-check svg{display:block}
+.wiz-done{display:inline-flex;align-items:center;gap:9px;font-family:Inter,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--emerald-2)}
+.wiz-form{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wiz-field{display:flex;flex-direction:column;gap:6px}
+.wiz-field label{font-size:13px;color:rgba(248,250,252,.6)}
+.wiz-field label .req{color:#e0a96d}
+.wiz-field input{padding:13px 14px;font-size:15px;font-family:inherit;color:#fff;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:8px;outline:none;transition:border-color .2s,box-shadow .2s}
+.wiz-field input:focus{border-color:var(--emerald-2);box-shadow:0 0 0 3px rgba(42,122,97,.22)}
+.wiz-field input::placeholder{color:rgba(248,250,252,.32)}
+.wiz-field input.err{border-color:#e0a96d}
+.field-error{grid-column:1/-1;color:#e0a96d;font-size:13px;min-height:18px}
+.wiz-form .wiz-actions{grid-column:1/-1;margin-top:6px}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* success */
+.success-wrap{text-align:center;padding:10px 0}
+.success-icon{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:rgba(31,94,74,.2);border:1px solid var(--emerald-2);display:flex;align-items:center;justify-content:center;color:var(--emerald-2);font-size:30px}
+.success-wrap h3{font-size:26px;color:#fff;margin-bottom:12px}
+.success-wrap p{color:rgba(248,250,252,.66);font-size:16px;line-height:1.7;max-width:46ch;margin:0 auto 8px}
+.success-calendly{display:inline-block;margin-top:22px;padding:14px 28px;border-radius:8px;background:var(--gold);color:var(--navy-dark);font-weight:700;text-decoration:none;transition:background .2s}
+.success-calendly:hover{background:#b2925a}
+
+/* footer — icons only, blended background */
+footer{background:transparent;padding:40px 42px;display:flex;justify-content:center;align-items:center}
+.footer-socials{display:flex;gap:20px;align-items:center}
+.footer-socials a{color:rgba(248,250,252,.55);display:inline-flex;transition:color .2s}
+.footer-socials a:hover{color:var(--gold)}
+
+@media(max-width:680px){
+  nav{padding:0 20px}
+  .wiz-wrap{padding:104px 18px 50px}
+  .wiz-form{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://solvyoo.com" class="nav-logo" aria-label="Solvyoo Advisory">
+    <svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <rect x="12" y="12" width="40" height="40" rx="2" stroke="#F8FAFC" stroke-width="2.6"/>
+      <line x1="32" y1="32" x2="49" y2="15" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="32" cy="32" r="3" fill="#C6A76B"/>
+    </svg>
+    <span class="brand-text"><span>SOLVYOO</span><small>ADVISORY</small></span>
+  </a>
+  <button class="lang-btn" id="langBtn">EN</button>
+</nav>
+
+<div class="wiz-progress"><div class="wiz-progress-fill" id="progressFill"></div></div>
+
+<main class="wiz-wrap">
+  <div class="wiz-inner">
+
+    <!-- intro -->
+    <div class="wiz-step active" id="step-intro">
+      <span class="wiz-eyebrow" id="introEyebrow">التشخيص</span>
+      <h1 class="wiz-h1" id="introTitle"></h1>
+      <p class="wiz-body" id="introBody"></p>
+      <div class="wiz-meta" id="introMeta"></div>
+      <div style="margin-top:36px">
+        <button class="wiz-primary" id="introCta"></button>
+      </div>
+    </div>
+
+    <!-- question -->
+    <div class="wiz-step" id="step-question">
+      <div class="wiz-kicker"><b id="qStepLabel"></b> <span id="qOfLabel"></span></div>
+      <h2 class="wiz-h2" id="qTitle"></h2>
+      <div class="wiz-options" id="qOptions"></div>
+      <div class="wiz-actions">
+        <button class="wiz-ghost" id="qBack"></button>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- lead -->
+    <div class="wiz-step" id="step-lead">
+      <span class="wiz-done" id="leadDone"></span>
+      <h2 class="wiz-h2" id="leadTitle"></h2>
+      <p class="wiz-body" id="leadBody"></p>
+      <form class="wiz-form" id="leadForm" novalidate>
+        <div class="wiz-field">
+          <label><span class="req">* </span><span id="lblName"></span></label>
+          <input type="text" id="lead_name" autocomplete="name">
+        </div>
+        <div class="wiz-field">
+          <label><span id="lblCompany"></span></label>
+          <input type="text" id="lead_company" autocomplete="organization">
+        </div>
+        <div class="wiz-field">
+          <label><span class="req">* </span><span id="lblEmail"></span></label>
+          <input type="email" id="lead_email" dir="ltr" autocomplete="email">
+        </div>
+        <div class="wiz-field">
+          <label><span id="lblPhone"></span></label>
+          <input type="tel" id="lead_phone" dir="ltr" autocomplete="tel">
+        </div>
+        <div class="field-error" id="leadError"></div>
+        <div class="wiz-actions">
+          <button type="button" class="wiz-ghost" id="leadBack"></button>
+          <button type="submit" class="wiz-primary" id="leadSubmit">
+            <span class="spinner" id="spinner"></span>
+            <span id="leadSubmitText"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- success -->
+    <div class="wiz-step" id="step-success">
+      <div class="success-wrap">
+        <div class="success-icon">✓</div>
+        <h3 id="successTitle"></h3>
+        <p id="successMsg"></p>
+        <p id="successNext"></p>
+        <a class="success-calendly" id="bookCta" href="https://lunacal.ai/solvyoo/business-diagnostic" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-socials">
+    <a href="https://www.linkedin.com/in/solvyoo/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg width="19" height="19" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.25 8.25h4.5V24h-4.5V8.25ZM8.25 8.25h4.31v2.15h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.14c0-1.46-.03-3.34-2.04-3.34-2.04 0-2.35 1.6-2.35 3.24V24h-4.5V8.25Z"/></svg>
+    </a>
+    <a href="https://x.com/solvyoo" target="_blank" rel="noopener" aria-label="X">
+      <svg width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26L22.82 21.75h-6.66l-5.22-6.82-5.97 6.82H1.66l7.73-8.84L1.18 2.25h6.83l4.72 6.24 5.51-6.24Zm-1.16 17.52h1.83L7.01 4.13H5.04l12.04 15.64Z"/></svg>
+    </a>
+    <a href="https://wa.me/966507398836" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg width="19" height="19" viewBox="0 0 24 24"><path fill="currentColor" d="M.05 24l1.69-6.16a11.86 11.86 0 0 1-1.59-5.95C.16 5.32 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.76 11.76 0 0 1 3.48 8.4c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45L.05 24Zm6.6-3.8c1.68.99 3.28 1.59 5.4 1.59 5.45 0 9.9-4.43 9.9-9.89a9.86 9.86 0 0 0-2.9-7 9.82 9.82 0 0 0-6.99-2.9c-5.46 0-9.9 4.44-9.9 9.9 0 2.22.65 3.88 1.74 5.62l-1 3.65 3.75-.97Zm11.3-5.36c-.07-.12-.27-.2-.56-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.39-1.47a8.96 8.96 0 0 1-1.65-2.06c-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.91-2.19-.24-.57-.48-.5-.66-.5l-.56-.02c-.2 0-.51.07-.78.37s-1.03 1-1.03 2.45 1.05 2.84 1.2 3.04c.15.2 2.07 3.16 5.02 4.43.7.3 1.25.48 1.67.62.7.22 1.34.19 1.85.12.56-.09 1.76-.72 2-1.42.25-.69.25-1.28.18-1.4Z"/></svg>
+    </a>
+    <a href="mailto:info@solvyoo.com" aria-label="Email">
+      <svg width="19" height="19" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6.5 9 6 9-6"/></g></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var WEBHOOK = 'https://n8n.doitsmart.cloud/webhook/free-intake';
+  var BOOKING = 'https://lunacal.ai/solvyoo/business-diagnostic';
+
+  var T = {
+    ar: {
+      dir:'rtl', langBtn:'EN',
+      eyebrow:'التشخيص',
+      introTitle:'لنبدأ بتشخيص موجز لأعمالك.',
+      introBody:'خمس أسئلة منظمة، تستغرق نحو ثلاث دقائق. نستخدم إجاباتك لتأطير المحادثة الأولى حول أين تكمن المكاسب القادمة في أعمالك.',
+      introMeta:['5 أسئلة','نحو 3 دقائق','بدون التزام'],
+      introCta:'ابدأ التشخيص',
+      step:'الخطوة', of:'من', back:'السابق',
+      questions:[
+        {id:'sector', q:'في أي قطاع تعمل أعمالك؟', options:['تجزئة وتجارة','صناعة وتصنيع','خدمات احترافية','ضيافة وأغذية','لوجستيات وتوزيع','قطاع آخر']},
+        {id:'revenue', q:'ما النطاق التقريبي للإيرادات السنوية؟', options:['أقل من 5 مليون ريال','5 – 20 مليون ريال','20 – 50 مليون ريال','50 – 200 مليون ريال','أكثر من 200 مليون ريال']},
+        {id:'constraint', q:'ما الذي يحد من الأداء أكثر من غيره اليوم؟', options:['تآكل هوامش الربح','كفاءة التشغيل','الوضوح في القرار','النمو والتوسع','هيكلة الفريق والحوكمة']},
+        {id:'urgency', q:'ما مدى إلحاح معالجة ذلك؟', options:['فوري — خلال هذا الربع','خلال 3 إلى 6 أشهر','نخطط للأشهر القادمة','نستكشف الخيارات فقط']},
+        {id:'role', q:'ما دورك في المؤسسة؟', options:['مالك / مؤسس','رئيس تنفيذي','عضو منتدب / مدير عام','قيادة الجيل الثاني','دور قيادي آخر']}
+      ],
+      done:'اكتمل التشخيص',
+      leadTitle:'أين نرسل ملخص التشخيص؟',
+      leadBody:'نراجع إجاباتك ونعود إليك بإطار أولي للمحادثة الأولى خلال 24 ساعة.',
+      f_name:'الاسم الكامل', f_company:'اسم الشركة', f_email:'البريد الإلكتروني', f_phone:'رقم الجوال',
+      finish:'أكمل واطلب التشخيص', submitting:'جاري الإرسال...',
+      errRequired:'هذا الحقل مطلوب', errEmail:'البريد الإلكتروني غير صحيح',
+      successTitle:'تم استلام طلبك', successMsg:'سنراجع إجاباتك ونرسل لك الملاحظات الأولية خلال 24 ساعة.',
+      successNext:'إذا كنت تفضل مناقشة الوضع مباشرة، يمكنك حجز جلسة تشخيص الآن.', bookCta:'احجز جلسة تشخيص'
+    },
+    en: {
+      dir:'ltr', langBtn:'عر',
+      eyebrow:'The diagnostic',
+      introTitle:'Let’s begin with a brief diagnostic.',
+      introBody:'Five structured questions, about three minutes. We use your answers to frame the first conversation around where the next gains in your business are.',
+      introMeta:['5 questions','~3 minutes','No commitment'],
+      introCta:'Start the diagnostic',
+      step:'Step', of:'of', back:'Back',
+      questions:[
+        {id:'sector', q:'Which sector is your business in?', options:['Retail & trade','Industry & manufacturing','Professional services','Hospitality & food','Logistics & distribution','Another sector']},
+        {id:'revenue', q:'What is your approximate annual revenue?', options:['Under SAR 5M','SAR 5 – 20M','SAR 20 – 50M','SAR 50 – 200M','Over SAR 200M']},
+        {id:'constraint', q:'What limits performance most today?', options:['Eroding margins','Operating efficiency','Decision clarity','Growth & expansion','Team structure & governance']},
+        {id:'urgency', q:'How urgent is addressing it?', options:['Immediate — this quarter','Within 3 to 6 months','Planning for the months ahead','Just exploring options']},
+        {id:'role', q:'What is your role?', options:['Owner / Founder','CEO','Managing Director / GM','Second-generation leadership','Another leadership role']}
+      ],
+      done:'Diagnostic complete',
+      leadTitle:'Where should we send your diagnostic summary?',
+      leadBody:'We review your answers and return with an initial frame for the first conversation within 24 hours.',
+      f_name:'Full name', f_company:'Company', f_email:'Email', f_phone:'Phone',
+      finish:'Finish and request the diagnostic', submitting:'Submitting...',
+      errRequired:'This field is required', errEmail:'Invalid email address',
+      successTitle:'Request received', successMsg:'We will review your answers and send your initial notes within 24 hours.',
+      successNext:'If you’d prefer to discuss it directly, you can book a diagnostic session now.', bookCta:'Book a diagnostic session'
+    }
+  };
+
+  var lang = 'ar';
+  var step = 0;            // 0 = intro, 1..5 = questions, 6 = lead, 7 = success
+  var TOTAL = 5;
+  var answers = {};
+  var lead = { name:'', company:'', email:'', phone:'' };
+
+  function $(id){ return document.getElementById(id); }
+  function t(){ return T[lang]; }
+
+  function setProgress(){
+    var p = step <= 0 ? 0 : (step >= 7 ? 1 : Math.min(step, TOTAL+1) / (TOTAL+1));
+    $('progressFill').style.width = (p*100) + '%';
+  }
+
+  function showStep(name){
+    ['intro','question','lead','success'].forEach(function(s){
+      $('step-'+s).classList.toggle('active', s === name);
+    });
+  }
+
+  function renderIntro(){
+    var x = t();
+    $('introEyebrow').textContent = x.eyebrow;
+    $('introTitle').textContent = x.introTitle;
+    $('introBody').textContent = x.introBody;
+    $('introCta').textContent = x.introCta;
+    var m = $('introMeta'); m.innerHTML = '';
+    x.introMeta.forEach(function(s){ var b=document.createElement('span'); b.className='wiz-badge'; b.textContent=s; m.appendChild(b); });
+    showStep('intro');
+  }
+
+  function renderQuestion(){
+    var x = t(); var q = x.questions[step-1];
+    $('qStepLabel').textContent = x.step + ' ' + step;
+    $('qOfLabel').textContent = x.of + ' ' + TOTAL;
+    $('qTitle').textContent = q.q;
+    $('qBack').textContent = x.back;
+    var box = $('qOptions'); box.innerHTML = '';
+    q.options.forEach(function(opt){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'opt-row' + (answers[q.id] === opt ? ' selected' : '');
+      btn.innerHTML = '<span class="opt-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-label"></span>';
+      btn.querySelector('.opt-label').textContent = opt;
+      btn.addEventListener('click', function(){
+        answers[q.id] = opt;
+        box.querySelectorAll('.opt-row').forEach(function(r){ r.classList.remove('selected'); });
+        btn.classList.add('selected');
+        setTimeout(next, 200);
+      });
+      box.appendChild(btn);
+    });
+    showStep('question');
+  }
+
+  function renderLead(){
+    var x = t();
+    $('leadDone').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11.5 14.5 16 9.5"/></svg> ' + x.done;
+    $('leadTitle').textContent = x.leadTitle;
+    $('leadBody').textContent = x.leadBody;
+    $('lblName').textContent = x.f_name; $('lblCompany').textContent = x.f_company;
+    $('lblEmail').textContent = x.f_email; $('lblPhone').textContent = x.f_phone;
+    $('leadBack').textContent = x.back;
+    $('leadSubmitText').textContent = x.finish;
+    $('lead_name').value = lead.name; $('lead_company').value = lead.company;
+    $('lead_email').value = lead.email; $('lead_phone').value = lead.phone;
+    $('leadError').textContent = '';
+    showStep('lead');
+  }
+
+  function renderSuccess(){
+    var x = t();
+    $('successTitle').textContent = x.successTitle;
+    $('successMsg').textContent = x.successMsg;
+    $('successNext').textContent = x.successNext;
+    $('bookCta').textContent = x.bookCta;
+    $('bookCta').setAttribute('href', BOOKING);
+    showStep('success');
+  }
+
+  function render(){
+    document.documentElement.lang = lang;
+    document.documentElement.dir = t().dir;
+    $('langBtn').textContent = t().langBtn;
+    if (step === 0) renderIntro();
+    else if (step >= 1 && step <= TOTAL) renderQuestion();
+    else if (step === TOTAL + 1) renderLead();
+    else renderSuccess();
+    setProgress();
+    window.scrollTo(0, 0);
+  }
+
+  function next(){ if (step < TOTAL + 1) { step++; render(); } }
+  function back(){ if (step > 0) { step--; render(); } }
+
+  function captureLead(){
+    lead.name = $('lead_name').value.trim();
+    lead.company = $('lead_company').value.trim();
+    lead.email = $('lead_email').value.trim();
+    lead.phone = $('lead_phone').value.trim();
+  }
+
+  function validateLead(){
+    captureLead();
+    var x = t(); var ok = true; var msg = '';
+    $('lead_name').classList.remove('err'); $('lead_email').classList.remove('err');
+    if (!lead.name) { $('lead_name').classList.add('err'); ok = false; msg = x.errRequired; }
+    if (!lead.email) { $('lead_email').classList.add('err'); ok = false; msg = x.errRequired; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) { $('lead_email').classList.add('err'); ok = false; msg = x.errEmail; }
+    $('leadError').textContent = ok ? '' : msg;
+    return ok;
+  }
+
+  function submit(e){
+    e.preventDefault();
+    if (!validateLead()) return;
+    var btn = $('leadSubmit');
+    btn.disabled = true;
+    $('spinner').style.display = 'block';
+    $('leadSubmitText').textContent = t().submitting;
+
+    var fd = new FormData();
+    fd.append('company_name', lead.company);
+    fd.append('contact_name', lead.name);
+    fd.append('email', lead.email);
+    fd.append('phone', lead.phone);
+    fd.append('sector', answers.sector || '');
+    fd.append('revenue', answers.revenue || '');
+    fd.append('problem_description', answers.constraint || '');
+    fd.append('constraint', answers.constraint || '');
+    fd.append('urgency', answers.urgency || '');
+    fd.append('role', answers.role || '');
+    fd.append('language', lang);
+    fd.append('source', 'solvyoo.com/start');
+    fd.append('answers_summary', JSON.stringify(answers));
+
+    fetch(WEBHOOK, { method:'POST', body:fd }).finally(function(){
+      step = TOTAL + 2;     // success
+      render();
+    });
+  }
+
+  // events
+  $('introCta').addEventListener('click', next);
+  $('qBack').addEventListener('click', back);
+  $('leadBack').addEventListener('click', function(){ captureLead(); back(); });
+  $('leadForm').addEventListener('submit', submit);
+  $('langBtn').addEventListener('click', function(){
+    if (step === TOTAL + 1) captureLead();
+    lang = (lang === 'ar') ? 'en' : 'ar';
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
