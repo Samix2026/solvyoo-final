@@ -79,16 +79,12 @@ html[lang="ar"] .eyebrow{font-family:var(--font-ar);letter-spacing:0;direction:r
 .pdf-blur{margin-top:20px;padding-bottom:34px;display:grid;gap:9px;filter:blur(3px);-webkit-mask-image:linear-gradient(180deg,var(--ink) 18%,transparent 100%);mask-image:linear-gradient(180deg,var(--ink) 18%,transparent 100%)}
 .pdf-blur i{display:block;height:9px;border-radius:99px;background:var(--grey-300)}
 .pdf-badge{position:absolute;bottom:22px;inset-inline:0;margin-inline:auto;width:max-content;max-width:calc(100% - 40px);padding:8px 20px;border-radius:var(--radius-md);background:var(--navy-800);color:var(--white);font-size:var(--text-sm);font-weight:var(--fw-semibold);box-shadow:var(--shadow-sm);text-align:center}
-/* Annotations — side column, each with a thin lead line + tick toward the memo (memo sits inline-start of this column) */
-.sample-side{display:flex;flex-direction:column;justify-content:center;gap:26px;align-self:stretch}
+/* Annotations — side column, a cohesive text-only block (no lines or arrows) */
+.sample-side{display:flex;flex-direction:column;justify-content:center;gap:26px;align-self:center}
 .sample-side .btn{align-self:flex-start}
-.sample-notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-evenly;flex:1;gap:24px}
-.sample-notes .note{position:relative;padding-inline-start:70px;font-size:var(--text-lg);font-weight:var(--fw-semibold);color:var(--text-strong);line-height:var(--lh-snug)}
-.sample-notes .note:after{content:"";position:absolute;top:50%;inset-inline-start:14px;width:44px;height:1px;background:var(--border-strong)}
-.sample-notes .note:before{content:"";position:absolute;top:50%;inset-inline-start:10px;width:8px;height:8px;border-top:1.5px solid var(--border-strong);border-right:1.5px solid var(--border-strong)}
-[dir="rtl"] .sample-notes .note:before{transform:translateY(-50%) rotate(45deg)}
-[dir="ltr"] .sample-notes .note:before{transform:translateY(-50%) rotate(-135deg)}
-@media(max-width:980px){.sample-grid{grid-template-columns:1fr;gap:40px}.sample-side{align-self:stretch}.sample-notes{justify-content:flex-start;gap:16px}.sample-notes .note{padding-inline-start:22px}.sample-notes .note:after{display:none}.sample-notes .note:before{inset-inline-start:2px}}
+.sample-notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px}
+.sample-notes .note{font-size:var(--text-lg);font-weight:var(--fw-semibold);color:var(--text-strong);line-height:var(--lh-snug)}
+@media(max-width:980px){.sample-grid{grid-template-columns:1fr;gap:40px}.sample-side{align-self:stretch}.sample-notes{gap:16px}}
 @media(max-width:620px){.pdf-mock{padding:24px 20px}.pdf-head img{width:118px}.pdf-badge{bottom:18px}.sample-notes .note{font-size:17px}}
 
 /* ============================================================
@@ -118,15 +114,9 @@ html[lang="ar"] .eyebrow{font-family:var(--font-ar);letter-spacing:0;direction:r
 .why-list article{border-top:1px solid var(--border-default);padding:24px 0}
 .why-list article:last-child{border-bottom:1px solid var(--border-default)}
 
-/* R5: growth-line motif — divider before final CTA (steps rely on numbers/spacing/type) */
+/* Method steps rely on numbers/spacing/type (no rail) */
 .steps article{border-top:0}
 .steps article:last-child{border-bottom:0}
-.final-cta{padding-top:36px}
-.growth-divider{width:min(calc(100% - 48px),var(--container-max));margin:0 auto 42px}
-.growth-divider svg{display:block;width:100%;height:48px}
-.gd-base{fill:none;stroke:var(--grey-400);stroke-width:2.5;stroke-dasharray:6 8}
-.gd-rise{fill:none;stroke:var(--emerald-600);stroke-width:3}
-.growth-divider circle{fill:var(--accent)}
 
 /* R2: staggered scroll reveals (motion tokens finally used) */
 @media (prefers-reduced-motion:no-preference){
@@ -146,7 +136,6 @@ html[lang="ar"] .eyebrow{font-family:var(--font-ar);letter-spacing:0;direction:r
 @media(max-width:980px){
   .challenge-grid article.challenge-featured{grid-row:auto;grid-column:1/-1}
   .why-grid{grid-template-columns:1fr;gap:44px}
-  .growth-divider{width:calc(100% - 48px)}
 }
 @media(max-width:620px){
   .challenge-grid article.challenge-featured{grid-column:auto;padding:30px 24px}
