@@ -13,3 +13,10 @@ backups/
 *.log
 *.pid
 *.tmp
+
+# Local AI tooling / non-source files
+.agents/
+.claude/
+SLOP.md
+skills-lock.json
+assets/favicon-16.png
