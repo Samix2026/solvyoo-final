@@ -1,0 +1,33 @@
+/* ============================================================
+   Solvyoo — Effects: radii, borders, shadows, motion
+   Restraint. Medium radius (no pills). Very subtle shadows —
+   cards feel like executive documents, not dashboard widgets.
+   Motion is intentional: soft fades, gentle reveals only.
+   ============================================================ */
+
+:root {
+  /* ---- Radii (medium, never pill) ---- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;   /* buttons, inputs */
+  --radius-lg: 10px;  /* cards */
+  --radius-xl: 14px;  /* large panels */
+
+  /* ---- Borders ---- */
+  --border-width: 1px;  /* @kind other */
+
+  /* ---- Shadows (subtle, paper-like) ---- */
+  --shadow-xs: 0 1px 2px rgba(15, 42, 67, 0.05);
+  --shadow-sm: 0 1px 3px rgba(15, 42, 67, 0.07), 0 1px 2px rgba(15, 42, 67, 0.04);
+  --shadow-md: 0 4px 14px rgba(15, 42, 67, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 42, 67, 0.10);
+  --shadow-focus: 0 0 0 3px var(--focus-ring);
+
+  /* ---- Motion ---- */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast:   140ms;  /* @kind other */
+  --dur-base:   220ms;  /* @kind other */
+  --dur-slow:   400ms;  /* @kind other */
+  --reveal:     520ms;  /* @kind other */
+}

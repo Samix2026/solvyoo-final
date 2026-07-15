@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Local test / audit artifacts
+audit-shots/
+.playwright-mcp/
+
+# Backups
+backups/
+
+# Local servers, logs, temp
+*.log
+*.pid
+*.tmp

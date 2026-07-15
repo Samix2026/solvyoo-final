@@ -1,0 +1,49 @@
+/* ============================================================
+   Solvyoo — Typography tokens
+   English: Inter. Arabic: IBM Plex Sans Arabic (body),
+   Noto Kufi Arabic (premium headings, selective).
+   Strong hierarchy, generous spacing, comfortable rhythm.
+   Numerals are ALWAYS Western (tabular where it matters).
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-en:        'Inter', system-ui, -apple-system, sans-serif;
+  --font-ar:        'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-ar-display:'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif;
+
+  --font-sans:      var(--font-en);   /* default UI */
+  --font-display:   var(--font-en);   /* English headings */
+  --font-numeric:   'Inter', sans-serif;
+
+  /* ---- Weights ---- */
+  --fw-regular: 400;  /* @kind other */
+  --fw-medium:  500;  /* @kind other */
+  --fw-semibold:600;  /* @kind other */
+  --fw-bold:    700;  /* @kind other */
+
+  /* ---- Type scale (1.25 major-third-ish, executive) ---- */
+  --text-display:  3.5rem;   /* 56 — hero */
+  --text-h1:       2.5rem;   /* 40 */
+  --text-h2:       2rem;     /* 32 */
+  --text-h3:       1.5rem;   /* 24 */
+  --text-h4:       1.25rem;  /* 20 */
+  --text-lg:       1.125rem; /* 18 */
+  --text-base:     1rem;     /* 16 */
+  --text-sm:       0.875rem; /* 14 */
+  --text-xs:       0.75rem;  /* 12 */
+  --text-eyebrow:  0.8125rem;/* 13 — overline / kicker */
+
+  /* ---- Line heights ---- */
+  --lh-tight:   1.1;   /* @kind other */
+  --lh-snug:    1.25;  /* @kind other */
+  --lh-heading: 1.3;   /* @kind other */
+  --lh-body:    1.65;  /* @kind other */
+  --lh-relaxed: 1.8;   /* @kind other */
+
+  /* ---- Letter spacing ---- */
+  --ls-tight:   -0.02em; /* @kind other */
+  --ls-normal:   0;      /* @kind other */
+  --ls-eyebrow:  0.16em; /* @kind other */
+  --ls-button:   0.02em; /* @kind other */
+}

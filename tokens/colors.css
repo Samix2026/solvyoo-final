@@ -1,0 +1,65 @@
+/* ============================================================
+   Solvyoo — Color tokens
+   Swiss-consulting palette. Navy is the workhorse; emerald
+   signals growth; gold is a rare strategic accent (never
+   dominate). Neutrals carry most surfaces.
+   ============================================================ */
+
+:root {
+  /* ---- Brand primitives ---- */
+  --navy-900: #0B1E2D;   /* dark background */
+  --navy-800: #0F2A43;   /* deep navy — primary */
+  --navy-700: #16395A;   /* navy hover / lifted */
+  --navy-600: #1E4A70;   /* navy tint */
+
+  --emerald-700: #163F31; /* emerald pressed */
+  --emerald-600: #1F5E4A; /* muted emerald — secondary */
+  --emerald-500: #2C7459; /* emerald hover */
+  --emerald-100: #E4EFEA; /* emerald wash */
+
+  --gold-600: #B2925A;   /* gold pressed */
+  --gold-500: #C6A76B;   /* executive gold — accent */
+  --gold-300: #E3D3AE;   /* gold tint */
+  --gold-100: #F3ECDD;   /* gold wash */
+
+  /* ---- Neutrals ---- */
+  --white:     #FFFFFF;
+  --off-white: #F8FAFC;  /* page background */
+  --grey-100:  #F4F6F8;  /* light grey surface */
+  --grey-200:  #E7ECF1;  /* hairline / divider */
+  --grey-300:  #D4DCE4;  /* border */
+  --grey-400:  #A9B6C2;  /* disabled / faint */
+  --grey-500:  #6B7C8C;  /* muted text */
+  --grey-600:  #45576A;  /* secondary text */
+  --ink:       #0F2A43;  /* primary text = navy */
+
+  /* ---- Semantic aliases ---- */
+  --bg-page:        var(--off-white);
+  --bg-subtle:      var(--grey-100);
+  --bg-dark:        var(--navy-900);
+  --surface-card:   var(--white);
+  --surface-raised: var(--white);
+
+  --text-strong:    var(--navy-800);
+  --text-body:      var(--grey-600);
+  --text-muted:     var(--grey-500);
+  --text-faint:     var(--grey-400);
+  --text-on-dark:   var(--off-white);
+  --text-on-dark-muted: #9DB0C0;
+
+  --border-hairline: var(--grey-200);
+  --border-default:  var(--grey-300);
+  --border-strong:   var(--grey-400);
+
+  --accent:          var(--gold-500);
+  --accent-text:     var(--gold-600);
+  --growth:          var(--emerald-600);
+
+  --focus-ring:      rgba(31, 94, 74, 0.40);
+
+  /* ---- Interactive (primary / navy button) ---- */
+  --btn-primary-bg:       var(--navy-800);
+  --btn-primary-bg-hover: var(--navy-700);
+  --btn-primary-bg-press: var(--navy-900);
+  --btn-primary-fg:       var(--white);
+}
