@@ -219,7 +219,7 @@
   if (urlIntent && VALID_INTENT[urlIntent]) { answers.intent = urlIntent; intentLocked = true; }
 
   // Entry-surface attribution: intent carries the intent, source carries the origin.
-  var SOURCE_BY_INTENT = { service_experience:'journey', decision:'home_decision' };
+  var SOURCE_BY_INTENT = { service_experience:'journey', decision:'home_decision', operations:'home_operations' };
   var source = (intentLocked && SOURCE_BY_INTENT[urlIntent]) ? SOURCE_BY_INTENT[urlIntent] : 'start_direct';
 
   function $(id){ return document.getElementById(id); }
