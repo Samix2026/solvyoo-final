@@ -151,14 +151,16 @@
       dir:'rtl',
       eyebrow:'التشخيص',
       introTitle:'لنبدأ بتشخيص موجز لأعمالك.',
-      introBody:'سبع أسئلة منظمة، تستغرق نحو أربع دقائق. نستخدم إجاباتك لتأطير المحادثة الأولى حول أين تكمن المكاسب القادمة في أعمالك.',
-      introMeta:['7 أسئلة','نحو 4 دقائق','بدون التزام'],
+      introBody:'أسئلة منظمة قصيرة، تستغرق نحو أربع دقائق. نستخدم إجاباتك لتأطير المحادثة الأولى حول أين تكمن المكاسب القادمة في أعمالك.',
+      introMeta:['أسئلة قصيرة','نحو 4 دقائق','بدون التزام'],
       introCta:'ابدأ التشخيص',
       step:'الخطوة', of:'من', back:'السابق', nextBtn:'التالي',
+      intentQ:{id:'intent', q:'ما الذي تريد الوضوح فيه؟', options:[{label:'عمل قائم أريد تحسينه', value:'operations'},{label:'أواجه قراراً مصيرياً', value:'decision'},{label:'أختبر فكرة جديدة', value:'venture'}]},
+      ideaQ:{id:'idea_maturity', q:'في أي مرحلة فكرتك الآن؟', options:[{label:'فكرة فقط، لم تُختبر بعد', value:'idea_only'},{label:'أختبرها في السوق حالياً', value:'testing_market'},{label:'جاهزة للإطلاق', value:'ready_to_launch'},{label:'انطلقت ولها جذب مبكر', value:'early_traction'}]},
       questions:[
         {id:'sector', q:'ما القطاع الذي تعمل فيه منشأتك؟', options:['تجزئة وتجارة','صناعة وتصنيع','خدمات احترافية','ضيافة وأغذية','لوجستيات وتوزيع','قطاع آخر']},
         {id:'revenue', q:'ما النطاق التقريبي للإيرادات السنوية؟', options:['أقل من 5 مليون ريال','5 – 20 مليون ريال','20 – 50 مليون ريال','50 – 200 مليون ريال','أكثر من 200 مليون ريال']},
-        {id:'constraint', q:'ما التحدي الأكثر تأثيراً على أداء عملك حالياً؟', options:['ضعف الأرباح رغم المبيعات','بطء أو تعثر العمليات اليومية','صعوبة اتخاذ القرارات الصحيحة','توقف النمو أو صعوبة التوسع','مشاكل في الفريق والتنظيم']},
+        {id:'constraint', q:'ما التحدي التشغيلي الأكثر تأثيراً على أداء عملك حالياً؟', options:['ضعف الأرباح رغم المبيعات','بطء أو تعثر العمليات','ضغط السيولة والتدفق النقدي','تعثر النمو أو التوسع','مشاكل الفريق والتنظيم']},
         {id:'problem_detail', type:'textarea', q:'ما المشكلة التي تعاني منها؟', placeholder:'مثال: أرباحنا تراجعت آخر سنة ولا أعرف السبب بالضبط، والمصاريف ترتفع...'},
         {id:'urgency', q:'ما مدى أولوية معالجة ذلك؟', options:['فوري، خلال هذا الربع','خلال 3 إلى 6 أشهر','نخطط للأشهر القادمة','نستكشف الخيارات فقط']},
         {id:'role', q:'ما صفتك في المنشأة؟', options:['مالك / مؤسس','رئيس تنفيذي','عضو منتدب / مدير عام','قيادة الجيل الثاني','دور قيادي آخر']},
@@ -178,14 +180,16 @@
       dir:'ltr',
       eyebrow:'The diagnostic',
       introTitle:'Let’s begin with a brief diagnostic.',
-      introBody:'Seven structured questions, about four minutes. We use your answers to frame the first conversation around where the next gains in your business are.',
-      introMeta:['7 questions','~4 minutes','No commitment'],
+      introBody:'A few structured questions, about four minutes. We use your answers to frame the first conversation around where the next gains in your business are.',
+      introMeta:['A few questions','~4 minutes','No commitment'],
       introCta:'Start the diagnostic',
       step:'Step', of:'of', back:'Back', nextBtn:'Next',
+      intentQ:{id:'intent', q:'What do you want clarity on?', options:[{label:'An existing business I want to improve', value:'operations'},{label:'I’m facing a critical decision', value:'decision'},{label:'I’m testing a new idea', value:'venture'}]},
+      ideaQ:{id:'idea_maturity', q:'What stage is your idea at?', options:[{label:'Just an idea, not tested yet', value:'idea_only'},{label:'Testing it in the market now', value:'testing_market'},{label:'Ready to launch', value:'ready_to_launch'},{label:'Launched with early traction', value:'early_traction'}]},
       questions:[
         {id:'sector', q:'What sector does your business operate in?', options:['Retail & trade','Industry & manufacturing','Professional services','Hospitality & food','Logistics & distribution','Another sector']},
         {id:'revenue', q:'What is your approximate annual revenue?', options:['Under SAR 5M','SAR 5 – 20M','SAR 20 – 50M','SAR 50 – 200M','Over SAR 200M']},
-        {id:'constraint', q:'What is the challenge affecting your business performance most right now?', options:['Weak profits despite sales','Slow or stalled daily operations','Difficulty making the right decisions','Stalled growth or hard expansion','Team and structure problems']},
+        {id:'constraint', q:'What operational challenge affects your business performance most right now?', options:['Weak profits despite sales','Slow or stalled operations','Cash flow and liquidity pressure','Stalled growth or expansion','Team and structure problems']},
         {id:'problem_detail', type:'textarea', q:'What problem are you facing?', placeholder:'e.g. Our profits dropped last year and I’m not sure exactly why, while costs keep rising...'},
         {id:'urgency', q:'How much of a priority is addressing it?', options:['Immediate, this quarter','Within 3 to 6 months','Planning for the months ahead','Just exploring options']},
         {id:'role', q:'What is your role in the business?', options:['Owner / Founder','CEO','Managing Director / GM','Second-generation leadership','Another leadership role']},
@@ -204,16 +208,43 @@
   };
 
   var lang = (localStorage.getItem('solvyoo-language') || 'ar');
-  var step = 0;            // 0 = intro, 1..7 = questions, 8 = lead, 9 = success
-  var TOTAL = 7;
+  var step = 0;            // 0 = intro, 1..N = questions, N+1 = lead, N+2 = success
   var answers = {};
   var lead = { name:'', company:'', email:'', phone:'' };
+
+  // Intent (B②): may arrive pre-locked from the URL (?intent=...) or be asked as Q1.
+  var VALID_INTENT = { operations:1, decision:1, venture:1, service_experience:1 };
+  var urlIntent = (new URLSearchParams(window.location.search)).get('intent');
+  var intentLocked = false;
+  if (urlIntent && VALID_INTENT[urlIntent]) { answers.intent = urlIntent; intentLocked = true; }
+
+  // Entry-surface attribution: intent carries the intent, source carries the origin.
+  var SOURCE_BY_INTENT = { service_experience:'journey', decision:'home_decision', operations:'home_operations' };
+  var source = (intentLocked && SOURCE_BY_INTENT[urlIntent]) ? SOURCE_BY_INTENT[urlIntent] : 'start_direct';
 
   function $(id){ return document.getElementById(id); }
   function t(){ return T[lang]; }
 
+  // Question flow derived from intent. venture drops revenue/team_size and
+  // swaps the operational constraint for the idea-maturity question.
+  function baseQuestions(){
+    var qs = t().questions.slice();
+    if (answers.intent === 'venture') {
+      qs = qs.filter(function(q){ return q.id !== 'revenue' && q.id !== 'team_size'; });
+      qs = qs.map(function(q){ return q.id === 'constraint' ? t().ideaQ : q; });
+    }
+    return qs;
+  }
+  function activeQuestions(){
+    var qs = baseQuestions();
+    if (!intentLocked) qs = [t().intentQ].concat(qs);
+    return qs;
+  }
+  function total(){ return activeQuestions().length; }
+
   function setProgress(){
-    var p = step <= 0 ? 0 : (step >= TOTAL + 2 ? 1 : Math.min(step, TOTAL+1) / (TOTAL+1));
+    var n = total();
+    var p = step <= 0 ? 0 : (step >= n + 2 ? 1 : Math.min(step, n+1) / (n+1));
     $('progressFill').style.width = (p*100) + '%';
   }
 
@@ -235,20 +266,22 @@
   }
 
   function renderQuestion(){
-    var x = t(); var q = x.questions[step-1];
+    var x = t(); var q = activeQuestions()[step-1];
     $('qStepLabel').textContent = x.step + ' ' + step;
-    $('qOfLabel').textContent = x.of + ' ' + TOTAL;
+    $('qOfLabel').textContent = x.of + ' ' + total();
     $('qTitle').textContent = q.q;
     $('qBack').textContent = x.back;
     var box = $('qOptions'); box.innerHTML = '';
     q.options.forEach(function(opt){
+      var label = (typeof opt === 'object') ? opt.label : opt;
+      var val   = (typeof opt === 'object') ? opt.value : opt;
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'opt-row' + (answers[q.id] === opt ? ' selected' : '');
+      btn.className = 'opt-row' + (answers[q.id] === val ? ' selected' : '');
       btn.innerHTML = '<span class="opt-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-label"></span>';
-      btn.querySelector('.opt-label').textContent = opt;
+      btn.querySelector('.opt-label').textContent = label;
       btn.addEventListener('click', function(){
-        answers[q.id] = opt;
+        answers[q.id] = val;
         box.querySelectorAll('.opt-row').forEach(function(r){ r.classList.remove('selected'); });
         btn.classList.add('selected');
         setTimeout(next, 200);
@@ -259,9 +292,9 @@
   }
 
   function renderTextarea(){
-    var x = t(); var q = x.questions[step-1];
+    var x = t(); var q = activeQuestions()[step-1];
     $('taStepLabel').textContent = x.step + ' ' + step;
-    $('taOfLabel').textContent = x.of + ' ' + TOTAL;
+    $('taOfLabel').textContent = x.of + ' ' + total();
     $('taTitle').textContent = q.q;
     $('taField').setAttribute('placeholder', q.placeholder || '');
     $('taField').value = answers[q.id] || '';
@@ -300,18 +333,19 @@
   function render(){
     document.documentElement.lang = lang;
     document.documentElement.dir = t().dir;
+    var n = total();
     if (step === 0) renderIntro();
-    else if (step >= 1 && step <= TOTAL) {
-      if (t().questions[step-1].type === 'textarea') renderTextarea();
+    else if (step >= 1 && step <= n) {
+      if (activeQuestions()[step-1].type === 'textarea') renderTextarea();
       else renderQuestion();
     }
-    else if (step === TOTAL + 1) renderLead();
+    else if (step === n + 1) renderLead();
     else renderSuccess();
     setProgress();
     window.scrollTo(0, 0);
   }
 
-  function next(){ if (step < TOTAL + 1) { step++; render(); } }
+  function next(){ if (step < total() + 1) { step++; render(); } }
   function back(){ if (step > 0) { step--; render(); } }
 
   function captureLead(){
@@ -351,21 +385,23 @@
     fd.append('problem_description', answers.problem_detail || '');
     fd.append('problem_detail', answers.problem_detail || '');
     fd.append('constraint', answers.constraint || '');
+    fd.append('idea_maturity', answers.idea_maturity || '');
     fd.append('urgency', answers.urgency || '');
     fd.append('role', answers.role || '');
     fd.append('team_size', answers.team_size || '');
+    fd.append('intent', answers.intent || '');
     fd.append('language', lang);
-    fd.append('source', 'solvyoo.com/start');
+    fd.append('source', source);
     fd.append('answers_summary', JSON.stringify(answers));
 
     fetch(WEBHOOK, { method:'POST', body:fd }).finally(function(){
-      step = TOTAL + 2;     // success
+      step = total() + 2;     // success
       render();
     });
   }
 
   function validateTextarea(){
-    var x = t(); var q = x.questions[step-1];
+    var x = t(); var q = activeQuestions()[step-1];
     var val = $('taField').value.trim();
     var msg = !val ? x.errRequired : (val.length < 20 ? x.errDetailMin : '');
     $('taField').classList.toggle('err', !!msg);
@@ -381,7 +417,7 @@
   $('taBack').addEventListener('click', back);
   $('taNext').addEventListener('click', function(){ if (validateTextarea()) next(); });
   $('taField').addEventListener('input', function(){
-    answers[t().questions[step-1].id] = $('taField').value;
+    answers[activeQuestions()[step-1].id] = $('taField').value;
     $('taField').classList.remove('err');
     $('taError').textContent = '';
   });
@@ -391,7 +427,7 @@
   // Bridge: the page chrome (v7 header) owns the single language toggle.
   window.solvyooSetFormLang = function(l){
     if (l === lang) return;
-    if (step === TOTAL + 1) captureLead();
+    if (step === total() + 1) captureLead();
     lang = l;
     render();
   };

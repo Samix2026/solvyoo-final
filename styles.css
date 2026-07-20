@@ -142,3 +142,8 @@ html[lang="ar"] .eyebrow{font-family:var(--font-ar);letter-spacing:0;direction:r
   .why-stat .stat-num{font-size:72px}
   .sample-side{gap:22px}
 }
+
+/* Decision-moment band (services expansion) */
+.decision-band{padding-top:0}
+.decision-band .decision-sub{margin:16px 2px 0;font-size:var(--text-sm);color:var(--text-muted);text-align:center}
+.decision-band .decision-sub a{color:var(--growth);font-weight:var(--fw-semibold);text-decoration:underline;text-underline-offset:3px}
