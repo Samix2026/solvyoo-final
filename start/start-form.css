@@ -47,11 +47,12 @@
 .wiz-meta{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)}
 .wiz-badge{font-size:var(--text-sm);color:var(--w-body);padding:var(--space-1) var(--space-3);border-radius:20px;border:1px solid var(--w-border)}
 .wiz-actions{margin-top:var(--space-5);display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;justify-content:space-between}
-.wiz-primary{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-height:50px;padding:var(--space-3) var(--space-4);border:none;border-radius:8px;font-size:var(--text-base);font-weight:var(--fw-bold);font-family:inherit;cursor:pointer;background:var(--w-emerald);color:var(--white);box-shadow:0 14px 34px rgba(var(--emerald-600-rgb),.24);transition:background .2s}
-.wiz-primary:hover{background:var(--w-emerald-2)}
+.wiz-primary{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-height:50px;padding:var(--space-3) var(--space-4);border:none;border-radius:var(--radius-md);font-size:var(--text-base);font-weight:var(--fw-bold);font-family:inherit;cursor:pointer;background:var(--btn-primary-bg);color:var(--white);box-shadow:var(--shadow-sm);transition:background var(--dur-fast) ease,transform .2s,box-shadow .2s}
+.wiz-primary:hover{background:var(--btn-primary-bg-hover)}
+.wiz-primary:active{transform:translateY(0) scale(.985);box-shadow:var(--shadow-xs)}
 .wiz-primary:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
-.wiz-ghost{background:none;border:none;color:var(--w-muted);font-size:var(--text-base);font-weight:var(--fw-semibold);font-family:inherit;cursor:pointer;padding:var(--space-2) var(--space-1);transition:color .2s}
-.wiz-ghost:hover{color:var(--w-ink)}
+.wiz-ghost{background:none;border:none;color:var(--text-body);font-size:var(--text-base);font-weight:var(--fw-semibold);font-family:inherit;cursor:pointer;padding:var(--space-2);transition:color var(--dur-fast) ease}
+.wiz-ghost:hover{color:var(--growth)}
 .wiz-kicker{font-family:var(--font-en);font-size:var(--text-sm);font-weight:var(--fw-semibold);letter-spacing:.06em;text-transform:uppercase;color:var(--w-muted)}
 .wiz-kicker b{color:var(--w-emerald);font-weight:var(--fw-bold)}
 .wiz-options{margin-top:var(--space-under-heading);display:flex;flex-direction:column;gap:var(--space-2)}
@@ -86,8 +87,9 @@
 .success-icon{width:64px;height:64px;margin:0 auto var(--space-3);border-radius:50%;background:var(--w-emerald-wash);border:1px solid var(--w-emerald-2);display:flex;align-items:center;justify-content:center;color:var(--w-emerald);font-size:30px}
 .success-wrap h3{font-size:var(--text-h3);color:var(--w-ink);margin-bottom:var(--space-under-heading)}
 .success-wrap p{color:var(--w-body);font-size:var(--text-base);line-height:1.7;max-width:46ch;margin:0 auto var(--space-2)}
-.success-calendly{display:inline-block;margin-top:var(--space-4);padding:var(--space-3) var(--space-4);border-radius:8px;background:var(--w-emerald);color:var(--white);font-weight:var(--fw-bold);text-decoration:none;transition:background .2s}
-.success-calendly:hover{background:var(--w-emerald-2)}
+.success-calendly{display:inline-block;margin-top:var(--space-4);padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);background:var(--btn-primary-bg);color:var(--white);font-weight:var(--fw-bold);box-shadow:var(--shadow-sm);text-decoration:none;transition:background var(--dur-fast) ease,transform .2s,box-shadow .2s}
+.success-calendly:hover{background:var(--btn-primary-bg-hover)}
+.success-calendly:active{transform:scale(.985);box-shadow:var(--shadow-xs)}
 
 @media(max-width:680px){
   .diagnostic-dark{padding:var(--space-6) var(--space-3)}
@@ -96,7 +98,8 @@
 }
 
 /* ── chrome: funnel back-link (from v7 start.css) ── */
-.start-back{color:var(--text-body);font-weight:var(--fw-semibold)}
+.start-back{color:var(--text-body);font-weight:var(--fw-semibold);transition:color var(--dur-fast) ease}
 .start-back:hover{color:var(--growth)}
+.wiz-primary:focus-visible,.success-calendly:focus-visible,.wiz-ghost:focus-visible,.start-back:focus-visible{outline:3px solid var(--focus-ring);outline-offset:4px}
 @media(max-width:980px){.start-back{margin-inline-start:auto}}
 @media(max-width:620px){.start-back{display:none}}
