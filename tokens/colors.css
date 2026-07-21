@@ -14,6 +14,7 @@
 
   --emerald-700: #163F31; /* emerald pressed */
   --emerald-600: #1F5E4A; /* muted emerald — secondary */
+  --emerald-600-rgb: 31, 94, 74; /* emerald-600 as r,g,b — for alpha-tinted overlays */
   --emerald-500: #2C7459; /* emerald hover */
   --emerald-100: #E4EFEA; /* emerald wash */
 
@@ -21,6 +22,8 @@
   --gold-500: #C6A76B;   /* executive gold — accent */
   --gold-300: #E3D3AE;   /* gold tint */
   --gold-100: #F3ECDD;   /* gold wash */
+
+  --danger: #C0553A;     /* form/system error state */
 
   /* ---- Neutrals ---- */
   --white:     #FFFFFF;
@@ -36,6 +39,7 @@
   /* ---- Semantic aliases ---- */
   --bg-page:        var(--off-white);
   --bg-subtle:      var(--grey-100);
+  --bg-warm:        #F5F2EA; /* warm cream — framework/final-cta sections */
   --bg-dark:        var(--navy-900);
   --surface-card:   var(--white);
   --surface-raised: var(--white);
@@ -55,7 +59,14 @@
   --accent-text:     var(--gold-600);
   --growth:          var(--emerald-600);
 
-  --focus-ring:      rgba(31, 94, 74, 0.40);
+  --focus-ring:      rgba(var(--emerald-600-rgb), 0.40);
+
+  /* ---- Overlay tints (repeated alpha values on dark/decorative surfaces) ---- */
+  --overlay-white-08: rgba(255, 255, 255, 0.08);
+  --overlay-white-10: rgba(255, 255, 255, 0.10);
+  --overlay-white-12: rgba(255, 255, 255, 0.12);
+  --overlay-white-14: rgba(255, 255, 255, 0.14);
+  --overlay-gold-09:   rgba(198, 167, 107, 0.09);
 
   /* ---- Interactive (primary / navy button) ---- */
   --btn-primary-bg:       var(--navy-800);
