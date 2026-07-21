@@ -12,8 +12,11 @@
   --space-5:  32px;
   --space-6:  48px;
   --space-7:  64px;
+  --space-7-5:80px;  /* single justified addition: already used verbatim pre-existing; the section/macro-gap ceiling landing point so 70-75px drift doesn't force a jump to 96 */
   --space-8:  96px;
   --space-9:  128px;
+
+  --space-under-heading: calc(var(--space-4) * var(--heading-gap-scale)); /* gap directly under an h1-tier heading — scaled for Arabic in typography.css */
 
   /* ---- Layout ---- */
   --container-max: 1200px;
